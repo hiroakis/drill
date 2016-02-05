@@ -10,7 +10,7 @@ func Down(base string, depth int, abs bool, dir bool) ([]string, error) {
 
 	var files []string
 
-	filepath.Walk(base, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(base, func(path string, info os.FileInfo, err error) error {
 		if info == nil {
 			return err
 		}
@@ -32,5 +32,5 @@ func Down(base string, depth int, abs bool, dir bool) ([]string, error) {
 		return err
 	})
 
-	return files, nil
+	return files, err
 }
